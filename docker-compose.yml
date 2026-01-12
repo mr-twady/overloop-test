@@ -2,9 +2,11 @@ version: '3.1'
 services:
   app:
     build: .
-    command: sh -c "python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000" 
+    
     # was having some issues with the setup_and_seed.py script during container startup - will check later (dupl was the issue)
     # command: sh -c "python3 manage.py migrate && python3 setup_and_seed.py && python3 manage.py runserver 0.0.0.0:8000" 
+    command: sh -c "python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000" 
+
     volumes:
       - .:/django-tech-test
     ports:
