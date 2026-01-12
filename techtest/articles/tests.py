@@ -11,7 +11,7 @@ from techtest.authors.models import Author
 class ArticleListViewTestCase(TestCase):
     def setUp(self):
         self.url = reverse("articles-list")
-        self.author = Author.objects.create(first_name="John", last_name="Doe")
+        self.author = Author.objects.create(first_name="Dunsin", last_name="TesterMan")
         self.article_1 = Article.objects.create(title="Fake Article 1")
         self.region_1 = Region.objects.create(code="AL", name="Albania")
         self.region_2 = Region.objects.create(code="UK", name="United Kingdom")
@@ -58,8 +58,8 @@ class ArticleListViewTestCase(TestCase):
                     "content": "With Author",
                     "author": {
                         "id": self.author.id,
-                        "first_name": "John",
-                        "last_name": "Doe",
+                        "first_name": "Dunsin",
+                        "last_name": "TesterMan",
                     },
                     "regions": [],
                 },
@@ -101,7 +101,7 @@ class ArticleListViewTestCase(TestCase):
         )
 
     def test_creates_new_article_with_author(self):
-        author = Author.objects.create(first_name="John", last_name="Doe")
+        author = Author.objects.create(first_name="Dunsin", last_name="TesterMan")
         payload = {
             "title": "Fake Article 4",
             "content": "Article with author",
@@ -121,8 +121,8 @@ class ArticleListViewTestCase(TestCase):
                 "content": "Article with author",
                 "author": {
                     "id": author.id,
-                    "first_name": "John",
-                    "last_name": "Doe",
+                    "first_name": "Dunsin",
+                    "last_name": "TesterMan",
                 },
                 "regions": [],
             },
@@ -256,7 +256,7 @@ class ArticleViewTestCase(TestCase):
         )
 
     def test_updates_article_with_author(self):
-        author = Author.objects.create(first_name="John", last_name="Doe")
+        author = Author.objects.create(first_name="Dunsin", last_name="TesterMan")
         payload = {
             "title": "Fake Article 1 (With Author)",
             "content": "Updated content",
@@ -275,8 +275,8 @@ class ArticleViewTestCase(TestCase):
                 "content": "Updated content",
                 "author": {
                     "id": author.id,
-                    "first_name": "John",
-                    "last_name": "Doe",
+                    "first_name": "Dunsin",
+                    "last_name": "TesterMan",
                 },
                 "regions": [
                     {
@@ -307,7 +307,7 @@ class ArticleViewTestCase(TestCase):
         self.assertEqual(article.author.id, author.id)
 
     def test_updates_article_removes_author_by_setting_null(self):
-        author = Author.objects.create(first_name="John", last_name="Doe")
+        author = Author.objects.create(first_name="Dunsin", last_name="TesterMan")
         self.article.author = author
         self.article.save()
         payload = {
@@ -324,7 +324,7 @@ class ArticleViewTestCase(TestCase):
         self.assertIsNone(response.json()["author"])
 
     def test_updates_article_preserves_author_when_not_provided(self):
-        author = Author.objects.create(first_name="John", last_name="Doe")
+        author = Author.objects.create(first_name="Dunsin", last_name="TesterMan")
         self.article.author = author
         self.article.save()
         payload = {
@@ -342,7 +342,7 @@ class ArticleViewTestCase(TestCase):
         self.assertIsNotNone(response.json()["author"])
 
     def test_updates_article_changes_author(self):
-        author1 = Author.objects.create(first_name="John", last_name="Doe")
+        author1 = Author.objects.create(first_name="Dunsin", last_name="TesterMan")
         author2 = Author.objects.create(first_name="Jane", last_name="Smith")
         self.article.author = author1
         self.article.save()
