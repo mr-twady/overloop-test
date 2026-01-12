@@ -27,5 +27,5 @@ urlpatterns = [
     path("regions/", RegionsListView.as_view(), name="regions-list"),
     path("regions/<int:region_id>/", RegionView.as_view(), name="region"),
     path("authors/", AuthorsListView.as_view(), name="authors-list"),
-    path("authors/<int:author_id>/", AuthorView.as_view(), name="author
+    path("authors/<int:author_id>/", AuthorView.as_view(), name="author"),
 ]
